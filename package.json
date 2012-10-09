@@ -1,0 +1,24 @@
+{
+  "author": "Aron Kornhall <aron@optimalbits.com> (http://optimalbits.com)",
+  "name": "Crawlme",
+  "description": "Makes your ajax web application crawlable by search engines",
+  "keywords": ["ajax", "crawling", "google", "indexing"],
+  "version": "0.0.1",
+  "main": "./index.js",
+  "engines": {
+    "node": ">=0.6.10"
+  },
+  "dependencies": {
+    "zombie": "2.x.x"
+  },
+  "devDependencies": {
+    "connect": "2.x.x",
+    "express": "3.x.x",
+    "mocha": "1.6.x",
+    "request": "2.11.x",
+    "should": "1.2.x"
+  },
+  "scripts": {
+    "test": "mocha --reporter spec --bail"
+  }
+}

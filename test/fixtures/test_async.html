@@ -1,0 +1,12 @@
+<html>
+  <head>
+  </head>
+  <body>
+    <script>
+    setTimeout(function() { 
+      var body = document.querySelector('body');
+      body.innerHTML = location.hash.split('=')[1];
+    }, 200);
+    </script>
+  </body>
+</html>
