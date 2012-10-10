@@ -9,7 +9,6 @@ var connect = require('connect'),
 describe('Crawlme', function() {
   var server;
   before(function() {
-    console.log(1);
     var app = connect()
       .use(crawlme())
       .use(connect.static(__dirname + '/fixtures'));
@@ -68,5 +67,45 @@ describe('Crawlme', function() {
 
   after(function() {
     server.close();
+  });
+});
+
+
+describe('Crawlme timing', function() {
+
+  it('should not wait to long', function(done) {
+    var server;
+    var app = connect()
+      .use(crawlme({waitFor: 200}))
+      .use(connect.static(__dirname + '/fixtures'));
+    server = http.createServer(app).listen(3000);
+
+    request(
+      {uri: 'http://localhost:3000/test_timeout.html?_escaped_fragment_=key=time'},
+      function(err, res, body) {
+        body.should.match(/<body>timebefore<\/body>/);
+        server.close(function() {
+          done();
+        });
+      }
+    );
+  });
+
+  it('should not wait to short', function(done) {
+    var server;
+    var app = connect()
+      .use(crawlme({waitFor: 600}))
+      .use(connect.static(__dirname + '/fixtures'));
+    server = http.createServer(app).listen(3000);
+
+    request(
+      {uri: 'http://localhost:3000/test_timeout.html?_escaped_fragment_=key=time'},
+      function(err, res, body) {
+        body.should.match(/<body>timeafter<\/body>/);
+        server.close(function() {
+          done();
+        });
+      }
+    );
   });
 });

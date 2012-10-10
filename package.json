@@ -1,8 +1,8 @@
 {
   "author": "Aron Kornhall <aron@optimalbits.com> (http://optimalbits.com)",
-  "name": "Crawlme",
+  "name": "crawlme",
   "description": "Makes your ajax web application crawlable by search engines",
-  "keywords": ["ajax", "crawling", "google", "indexing"],
+  "keywords": ["ajax", "crawling", "google", "indexing", "SEO"],
   "version": "0.0.1",
   "main": "./index.js",
   "engines": {
