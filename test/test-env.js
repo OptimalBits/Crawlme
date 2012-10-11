@@ -19,9 +19,10 @@ describe('Crawlme environments', function() {
       {uri: 'http://localhost:3000/test.html?_escaped_fragment_=key=express'},
       function(err, res, body) {
         body.should.match(/<body>express<\/body>/);
-        server.close(function() {
+        server.on('close', function() {
           done();
         });
+        server.close();
       }
     );
   });
@@ -37,9 +38,10 @@ describe('Crawlme environments', function() {
       {uri: 'http://localhost:3000/test.html?_escaped_fragment_=key=connect'},
       function(err, res, body) {
         body.should.match(/<body>connect<\/body>/);
-        server.close(function() {
+        server.on('close', function() {
           done();
         });
+        server.close();
       }
     );
   });

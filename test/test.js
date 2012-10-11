@@ -84,9 +84,10 @@ describe('Crawlme timing', function() {
       {uri: 'http://localhost:3000/test_timeout.html?_escaped_fragment_=key=time'},
       function(err, res, body) {
         body.should.match(/<body>timebefore<\/body>/);
-        server.close(function() {
+        server.on('close', function() {
           done();
         });
+        server.close();
       }
     );
   });
@@ -102,9 +103,10 @@ describe('Crawlme timing', function() {
       {uri: 'http://localhost:3000/test_timeout.html?_escaped_fragment_=key=time'},
       function(err, res, body) {
         body.should.match(/<body>timeafter<\/body>/);
-        server.close(function() {
+        server.on('close', function() {
           done();
         });
+        server.close();
       }
     );
   });
