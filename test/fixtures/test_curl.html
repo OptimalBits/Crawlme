@@ -1,0 +1,20 @@
+<html>
+  <head>
+  </head>
+  <body>
+  <script src="js/curl.js"></script>
+    <script>
+
+curl([
+  'js/curl_a',
+  'js/curl_b'
+]).then(function success(a, b) {
+  var body = document.querySelector('body');
+  body.innerHTML = a + b + location.hash.split('=')[1];
+}, function failure(err) {
+  alert(err);
+});
+
+    </script>
+  </body>
+</html>

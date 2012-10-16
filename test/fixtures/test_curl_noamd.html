@@ -1,0 +1,19 @@
+<html>
+  <head>
+  </head>
+  <body>
+  <script src="js/curl.js"></script>
+    <script>
+
+curl([
+  'js!/js/curl_noamd.js'
+]).then(function success() {
+  var body = document.querySelector('body');
+  body.innerHTML = a + b + location.hash.split('=')[1];
+}, function failure(err) {
+  alert(err);
+});
+
+    </script>
+  </body>
+</html>
