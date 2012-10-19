@@ -1,0 +1,24 @@
+<html>
+  <head>
+  </head>
+  <body>
+  <script src="js/curl.js"></script>
+    <script>
+
+curl([
+  'text!/data/a.txt',
+  'text!/data/b.txt',
+  'text!/data/c.txt',
+  'text!/data/d.txt',
+]).then(function success(a,b,c,d) {
+  var body = document.querySelector('body');
+  var suf = location.hash.split('=')[1];
+  var res = [a,b,c,d].map(function(x) {return x.replace('\n','') + suf}).join()
+  body.innerHTML = res;
+}, function failure(err) {
+  alert(err);
+});
+
+    </script>
+  </body>
+</html>

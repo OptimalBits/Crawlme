@@ -1,0 +1,21 @@
+<html>
+  <head>
+  </head>
+  <body>
+  <script src="js/curl.js"></script>
+    <script>
+
+curl([
+  'text!/data/names.txt'
+]).then(function success(data) {
+  var body = document.querySelector('body');
+  var suf = location.hash.split('=')[1];
+  var res = data.split(':').map(function(x) {return x + suf}).join()
+  body.innerHTML = res;
+}, function failure(err) {
+  alert(err);
+});
+
+    </script>
+  </body>
+</html>

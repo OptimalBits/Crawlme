@@ -36,6 +36,49 @@ describe('Crawlme', function() {
     );
   });
 
+  it('should work with curl-loaded css', function(done) {
+    request(
+      {uri: 'http://localhost:3000/test_curl_css.html?_escaped_fragment_=cl=a'},
+      function(err, res, body) {
+        body.should.match(/<link rel="stylesheet" type="text\/css" href="\/css\/test\.css" \/>/);
+        done();
+      }
+    );
+  });
+
+  it('should work with curl-loaded text', function(done) {
+    request(
+      {uri: 'http://localhost:3000/test_curl_text.html?_escaped_fragment_=suf=son'},
+      function(err, res, body) {
+        body.should.match(/Adamson,Bertilson,Cecarson/);
+        done();
+      }
+    );
+  });
+
+  it('should work with curl-loaded text, js and css all at once', function(done) {
+    request(
+      {uri: 'http://localhost:3000/test_curl_multi.html?_escaped_fragment_=cl=a'},
+      function(err, res, body) {
+        body.should.match(/Adamnoa,Bertilnoa,Cecarnoa/);
+        body.should.match(/<link rel="stylesheet" type="text\/css" href="\/css\/test\.css" \/>/);
+        done();
+      }
+    );
+  });
+
+  it('should work with a series ofcurl-loaded text', function(done) {
+    request(
+      {uri: 'http://localhost:3000/test_curl_text_many.html?_escaped_fragment_=suf=son'},
+      function(err, res, body) {
+        body.should.match(/ason/);
+        body.should.match(/bson/);
+        body.should.match(/cson/);
+        body.should.match(/dson/);
+        done();
+      }
+    );
+  });
   after(function() {
     server.close();
   });
