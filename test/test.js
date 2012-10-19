@@ -65,6 +65,16 @@ describe('Crawlme', function() {
     );
   });
 
+  it('should handle dynamically created links', function(done) {
+    request(
+      {uri: 'http://localhost:3000/test_links.html?_escaped_fragment_='},
+      function(err, res, body) {
+        body.should.match(/<a href="http:\/\/localhost:3000\/test_links.html#!hash">/);
+        done();
+      }
+    );
+  });
+
   after(function() {
     server.close();
   });
