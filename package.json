@@ -3,7 +3,7 @@
   "name": "crawlme",
   "description": "Makes your ajax web application crawlable by search engines by generating html snapshots on the fly",
   "keywords": ["ajax", "crawling", "google", "indexing", "SEO", "Search Engine Optimization"],
-  "version": "0.0.3",
+  "version": "0.0.4",
   "main": "./index.js",
   "engines": {
     "node": ">=0.6.10"
