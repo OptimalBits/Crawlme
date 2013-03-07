@@ -13,10 +13,10 @@ describe('Crawlme environments', function() {
       .use(crawlme())
       .use(express.static(__dirname + '/fixtures'));
 
-    var server = http.createServer(app).listen(3000);
+    var server = http.createServer(app).listen(5180);
 
     request(
-      {uri: 'http://localhost:3000/test.html?_escaped_fragment_=key=express'},
+      {uri: 'http://localhost:5180/test.html?_escaped_fragment_=key=express'},
       function(err, res, body) {
         body.should.match(/<body>express<\/body>/);
         server.on('close', function() {
@@ -32,10 +32,10 @@ describe('Crawlme environments', function() {
       .use(crawlme())
       .use(connect.static(__dirname + '/fixtures'));
 
-    var server = http.createServer(app).listen(3000);
+    var server = http.createServer(app).listen(5180);
 
     request(
-      {uri: 'http://localhost:3000/test.html?_escaped_fragment_=key=connect'},
+      {uri: 'http://localhost:5180/test.html?_escaped_fragment_=key=connect'},
       function(err, res, body) {
         body.should.match(/<body>connect<\/body>/);
         server.on('close', function() {
