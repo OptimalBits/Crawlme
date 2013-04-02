@@ -1,17 +1,17 @@
 <html>
   <head>
   </head>
-  <body>
+  <body id="body">
     <script>
     // before timeout (100ms)
     setTimeout(function() { 
-      var body = document.querySelector('body');
+      var body = document.querySelector('#body');
       body.innerHTML = location.hash.split('=')[1] + 'before';
     }, 100);
 
     // after timeout (500ms)
     setTimeout(function() { 
-      var body = document.querySelector('body');
+      var body = document.querySelector('#body');
       body.innerHTML = location.hash.split('=')[1] + 'after';
     }, 500);
     </script>
