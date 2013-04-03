@@ -3,13 +3,15 @@
   "name": "crawlme",
   "description": "Makes your ajax web application crawlable by search engines by generating html snapshots on the fly",
   "keywords": ["ajax", "crawling", "google", "indexing", "SEO", "Search Engine Optimization"],
-  "version": "0.0.4",
+  "version": "0.0.5",
   "main": "./index.js",
   "engines": {
     "node": ">=0.6.10"
   },
   "dependencies": {
-    "zombie": "2.x.x"
+    "zombie": "2.x.x",
+    "lru-cache": "2.3.x",
+    "async": "0.2.6"
   },
   "devDependencies": {
     "connect": "2.x.x",
