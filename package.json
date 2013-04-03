@@ -1,7 +1,7 @@
 {
   "author": "Aron Kornhall <aron@optimalbits.com> (http://optimalbits.com)",
   "name": "crawlme",
-  "description": "Makes your ajax web application crawlable by search engines by generating html snapshots on the fly",
+  "description": "Makes your ajax web application indexable by search engines by generating html snapshots on the fly. Caches results for blazing fast responses and better page ranking.",
   "keywords": ["ajax", "crawling", "google", "indexing", "SEO", "Search Engine Optimization"],
   "version": "0.0.5",
   "main": "./index.js",
