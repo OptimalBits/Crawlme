@@ -52,7 +52,7 @@ describe('Caching', function() {
           function(err, res, body) {
             var t2 = Date.now();
             body.should.match(/<body>value<\/body>/);
-            Math.abs((t2-t1)-(t1-t0)).should.be.below(50);
+            (t1-t0).should.be.above(40);
             server.on('close', done);
             server.close();
           }
