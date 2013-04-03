@@ -1,13 +1,13 @@
 #Crawlme
-A Connect/Express middleware that enables ajax crawling for your node.js web application.
+A Connect/Express middleware that makes your node.js web application indexable by search engines. Crawlme generates static HTML snapshots of your JavaScript web application on the fly and has a built in periodically refreshing in-memory cache, so even though the snapshot generation may take a second or two, search engines will get them really fast. This is beneficial for SEO since response time is one of the factors used in the page rank algorithm.
 
 Making ajax applications crawlable has always been tricky since search engines don't execute the JavaScript on the web sites they crawl. The solution to this is to provide the search engines with pre-rendered HTML versions of each page on your site, but creating those HTML versions has until now been a tedious and error prone process with many manual steps. Crawlme fixes this by rendering HTML snapshots of your web application on the fly whenever the Googlebot crawls your site. Apart from making the process of more or less manually creating indexable HTML versions of your site obsolete, this also has the benefit that Google will always index the latest version of your site and not some old pre-rendered version.
 
 Follow [optimalbits](http://twitter.com/optimalbits) for news and updates regarding this library.
 
 ##How to use
-1. Make you ajax app use the hashbang #! instead of just the # in urls. This tells Google that your app supports ajax crawling and indexing.
-2. Insert the Crawlme middleware before the server in the chain of Connect/Express middlewares.
+1. Make you ajax app use the hashbang #! instead of just the # in urls. This tells Google that those urls support ajax crawling and indexing.
+2. Insert the Crawlme middleware before your server in the chain of Connect/Express middlewares.
 3. Sit back and relax. Crawlme takes care of the rest. :)
 
 ##Example
@@ -56,6 +56,8 @@ __Arguments__
 Crawlme provides the following configuration options:
 - `waitFor`   The time (in ms) crawlme waits before it assumes that your ajax page has finished loading and takes an HTML snapshot. Set this high enough to make sure that your page loads completely before the snapshot is taken. Defaults to 1000ms.
 - `protocol`  The protocol crawlme should use to get the ajax pages. If crawlme runs under express this is determined automatically. Under connect this option is used. (defaults to http)
+- `cacheSize`  The size of the cache that crawlme should use to cache the snapshots. String.prototype.length is used to determine the "size" of each snapshot. A cache size of 0 means no cache. Defaults to 2^20.
+- `cacheRefresh`  The number of seconds between cache refreshes. Defaults to 15 minutes.
 
 ##Under the hood
 Crawlme uses the excellent headless browser [zombie.js](http://zombie.labnotes.org/) to render the HTML snapshots.
