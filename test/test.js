@@ -13,7 +13,7 @@ describe('Crawlme', function() {
       .use(crawlme())
       .use(connect.static(__dirname + '/fixtures'));
 
-    server = http.createServer(app).listen(5180);
+    server = http.createServer(app).listen(8944);
   });
 
   after(function(done) {
@@ -23,16 +23,16 @@ describe('Crawlme', function() {
 
   it('should generate HTML snapshots for the escaped URLs', function(done) {
     request(
-      {uri: 'http://localhost:5180/test.html?_escaped_fragment_=key=value'},
+      {uri: 'http://localhost:8944/test.html?_escaped_fragment_=key=value'},
       function(err, res, body) {
-        body.should.match(/<body>value<\/body>/);
+        body.should.match(/value/);
         done();
       }
     );
   });
 
   it('should let normal AJAX request pass through', function(done) {
-    request({uri: 'http://localhost:5180/test.html#!=key=value'},
+    request({uri: 'http://localhost:8944/test.html#!=key=value'},
       function(err, res, body) {
         body.should.match(/<script>/);
         done();
@@ -42,9 +42,9 @@ describe('Crawlme', function() {
 
   it('should unescape escaped hash fragments', function(done) {
     request(
-      {uri: 'http://localhost:5180/test.html?_escaped_fragment_=key=value%233'},
+      {uri: 'http://localhost:8944/test.html?_escaped_fragment_=key=value%233'},
       function(err, res, body) {
-        body.should.match(/<body>value#3<\/body>/);
+        body.should.match(/value#3/);
         done();
       }
     );
@@ -52,9 +52,9 @@ describe('Crawlme', function() {
 
   it('should handle asynchronous client side JavaScript', function(done) {
     request(
-      {uri: 'http://localhost:5180/test_async.html?_escaped_fragment_=key=value4'},
+      {uri: 'http://localhost:8944/test_async.html?_escaped_fragment_=key=value4'},
       function(err, res, body) {
-        body.should.match(/<body>value4<\/body>/);
+        body.should.match(/value4/);
         done();
       }
     );
@@ -62,9 +62,9 @@ describe('Crawlme', function() {
 
   it('should handle dynamically loaded JavaScript', function(done) {
     request(
-      {uri: 'http://localhost:5180/test_dynload.html?_escaped_fragment_=key=value5'},
+      {uri: 'http://localhost:8944/test_dynload.html?_escaped_fragment_=key=value5'},
       function(err, res, body) {
-        body.should.match(/<body>value5<\/body>/);
+        body.should.match(/value5/);
         done();
       }
     );
@@ -72,9 +72,9 @@ describe('Crawlme', function() {
 
   it('should handle dynamically created links', function(done) {
     request(
-      {uri: 'http://localhost:5180/test_links.html?_escaped_fragment_='},
+      {uri: 'http://localhost:8944/test_links.html?_escaped_fragment_='},
       function(err, res, body) {
-        body.should.match(/<a href="http:\/\/localhost:5180\/test_links.html#!hash">/);
+        body.should.match(/<a href="http:\/\/localhost:8944\/test_links.html#!hash">/);
         done();
       }
     );
@@ -83,18 +83,17 @@ describe('Crawlme', function() {
 
 
 describe.skip('Crawlme timing', function() {
-
   it('should not wait to long', function(done) {
     var server;
     var app = connect()
       .use(crawlme({waitFor: 200}))
       .use(connect.static(__dirname + '/fixtures'));
-    server = http.createServer(app).listen(5180);
+    server = http.createServer(app).listen(8944);
 
     request(
-      {uri: 'http://localhost:5180/test_timeout.html?_escaped_fragment_=key=time'},
+      {uri: 'http://localhost:8944/test_timeout.html?_escaped_fragment_=key=time'},
       function(err, res, body) {
-        body.should.match(/<body>timebefore<\/body>/);
+        body.should.match(/timebefore/);
         server.on('close', function() {
           done();
         });
@@ -108,12 +107,12 @@ describe.skip('Crawlme timing', function() {
     var app = connect()
       .use(crawlme({waitFor: 600}))
       .use(connect.static(__dirname + '/fixtures'));
-    server = http.createServer(app).listen(5180);
+    server = http.createServer(app).listen(8944);
 
     request(
-      {uri: 'http://localhost:5180/test_timeout.html?_escaped_fragment_=key=time'},
+      {uri: 'http://localhost:8944/test_timeout.html?_escaped_fragment_=key=time'},
       function(err, res, body) {
-        body.should.match(/<body>timeafter<\/body>/);
+        body.should.match(/timeafter/);
         server.on('close', function() {
           done();
         });
