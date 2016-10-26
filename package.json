@@ -2,16 +2,23 @@
   "author": "Aron Kornhall <aron@optimalbits.com> (http://optimalbits.com)",
   "name": "crawlme",
   "description": "Makes your ajax web application indexable by search engines by generating html snapshots on the fly. Caches results for blazing fast responses and better page ranking.",
-  "keywords": ["ajax", "crawling", "google", "indexing", "SEO", "Search Engine Optimization"],
+  "keywords": [
+    "ajax",
+    "crawling",
+    "google",
+    "indexing",
+    "SEO",
+    "Search Engine Optimization"
+  ],
   "version": "0.0.7",
   "main": "./index.js",
   "engines": {
     "node": ">=0.6.10"
   },
   "dependencies": {
-    "zombie": "2.x.x",
+    "async": "0.2.6",
     "lru-cache": "2.3.x",
-    "async": "0.2.6"
+    "zombie": "^4.3.0"
   },
   "devDependencies": {
     "connect": "2.x.x",
